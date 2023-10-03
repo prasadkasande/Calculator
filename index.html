@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="WhiteCalci.css" id="one">
+	<title>Calculator</title>
+</head>
+<body>
+
+	<div class="width-message" style="display: none;">
+		Sorry this application is not made for mobile. Please open this on your tablet or computer. Sorry for the inconvenience
+
+	</div>
+   <div id="main" >
+
+   	  <div class="calcidiv" id="ioscreen">
+   	  	 <input type="text" name="" placeholder="Always happy to help you &#128516" id="inputarea" autofocus>
+   	  </div>
+   	  <div class="calcidiv" id="inputbtn">
+   	  	 <div class="btn"><button class="buttons" id="one" onclick="clearDisplay()">AC</button></div>
+   	  	 <div class="btn"><button class="buttons" id="two" onclick="appendToDisplay('( )')">(  )</button></div>
+   	  	 <div class="btn"><button class="buttons" id="three" onclick="appendToDisplay('%')">%</button></div>
+   	  	 <div class="btn"><button class="buttons" id="four" onclick="appendToDisplay('/')">/</button></div>
+   	  	 <div class="btn"><button class="buttons" id="five" onclick="appendToDisplay('7')">7</button></div>
+   	  	 <div class="btn"><button class="buttons" id="six" onclick="appendToDisplay('8')">8</button></div>
+   	  	 <div class="btn"><button class="buttons" id="seven" onclick="appendToDisplay('9')">9</button></div>
+   	  	 <div class="btn"><button class="buttons" id="eight" onclick="appendToDisplay('*')">X</button></div>
+   	  	 <div class="btn"><button class="buttons" id="nine" onclick="appendToDisplay('4')">4</button></div>
+   	  	 <div class="btn"><button class="buttons" id="ten" onclick="appendToDisplay('5')">5</button></div>
+   	  	 <div class="btn"><button class="buttons" id="eleven" onclick="appendToDisplay('6')">6</button></div>
+   	  	 <div class="btn"><button class="buttons" id="twelve" onclick="appendToDisplay('-')">-</button></div>
+   	  	 <div class="btn"><button class="buttons" id="thirteen" onclick="appendToDisplay('1')">1</button></div>
+   	  	 <div class="btn"><button class="buttons" id="fourteen" onclick="appendToDisplay('2')">2</button></div>
+   	  	 <div class="btn"><button class="buttons" id="fifteen" onclick="appendToDisplay('3')">3</button></div>
+   	  	 <div class="btn"><button class="buttons" id="seventeen" onclick="appendToDisplay('+')">+</button></div>
+   	  	 <div class="btn"><button class="buttons" id="eigthteen" onclick="appendToDisplay('0')">0</button></div>
+   	  	 <div class="btn"><button class="buttons" id="nineteen" onclick="appendToDisplay('.')">.</button></div>
+   	  	 <div class="btn"><button class="buttons" id="twenty" onclick="cutDisplay()">Del</button></div>
+   	  	 <div class="btn"><button class="buttons" id="twenty-one" onclick="calculateResult()">=</button></div>
+   	  </div>
+
+   	
+   </div>
+
+   <div class="themechanger" ><button id="thm" onclick="toggleStylesheet()">Change theme</button></div>
+
+   <script type="text/javascript">
+
+   	  function appendToDisplay(value) {
+            document.getElementById('inputarea').value += value;
+        }
+        function calculateResult() {
+            try {
+                document.getElementById('inputarea').value = eval(document.getElementById('inputarea').value);
+            } catch (error){
+                document.getElementById('inputarea').value = 'Format Error';
+            }
+			
+        }
+		function clearDisplay()
+		{
+			document.getElementById('inputarea').value = '';
+		}
+		function cutDisplay()
+		{
+			let curdis = document.getElementById('inputarea').value;
+			if(curdis.length>0){
+				document.getElementById('inputarea').value = curdis.slice(0,-1);
+                // document.getElementById('inputarea').value = curdis.slice(1,-1);
+			}
+			
+		}
+
+   var currentStylesheet = 1;
+
+      function toggleStylesheet() {
+    var stylesheetLink = document.getElementById("one");
+    
+    // Determine the next stylesheet to use
+    if (currentStylesheet === 1) {
+        stylesheetLink.href = "WhiteCalci.css";
+        currentStylesheet = 2;
+    } else {
+        stylesheetLink.href = "BlackCalci.css";
+        currentStylesheet = 1;
+    }
+    }
+
+	window.addEventListener('resize', function () {
+    if (window.innerWidth < 999) {
+        document.querySelector('.width-message').style.display = 'block';
+    } else {
+        document.querySelector('.width-message').style.display = 'none';
+    }
+});
+   </script>
+   
+</body>
+</html>
